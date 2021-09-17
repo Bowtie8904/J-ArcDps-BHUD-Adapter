@@ -1,4 +1,4 @@
-# J-ArcDps-BHUD_Adapter
+# J-ArcDps-BHUD-Adapter
  This is a very simple library that makes it easier to receive and process events sent from [arcdps-bhud](https://github.com/blish-hud/arcdps-bhud) in Java.
 
 ## Requirements
