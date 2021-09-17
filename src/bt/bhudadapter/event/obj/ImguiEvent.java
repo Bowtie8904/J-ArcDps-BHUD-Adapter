@@ -13,4 +13,12 @@ public class ImguiEvent
     {
         isCharSelectOrLoading = charSelectOrLoading;
     }
+
+    @Override
+    public String toString()
+    {
+        return "ImguiEvent{" +
+                "isCharSelectOrLoading=" + isCharSelectOrLoading +
+                '}';
+    }
 }

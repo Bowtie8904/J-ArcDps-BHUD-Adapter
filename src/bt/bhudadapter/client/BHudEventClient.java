@@ -35,6 +35,11 @@ public class BHudEventClient extends RawClient
         setupDefaultEventParser();
     }
 
+    /**
+     * Sets the listener that will receive events from this client.
+     *
+     * @param listener
+     */
     public void setEventListener(BHudEventListener listener)
     {
         if (this.eventParser != null)
