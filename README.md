@@ -5,7 +5,7 @@
 This library requires Java 11+
 
 ## Maven
-```
+```xml
 <repositories>
     <repository>
         <id>jitpack.io</id>
@@ -24,7 +24,7 @@ This library requires Java 11+
 
 ## Simple example
 Listener
-```
+```java
 public class ExampleListener implements BHudEventListener
 {
     @Override
@@ -51,7 +51,7 @@ public class ExampleListener implements BHudEventListener
 ```
 
 Main setup of client
-```
+```java
 public class Example
 {
     public static void main(String[] args)
