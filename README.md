@@ -56,21 +56,14 @@ public class Example
 {
     public static void main(String[] args)
     {
-        try
-        {
-            // create a new client and tell it where the Guild Wars 2 application is
-            var client = new BHudEventClient("C:\\Program Files\\Guild Wars 2\\Gw2-64.exe");
+        // create a new client and tell it where the Guild Wars 2 application is
+        var client = new BHudEventClient("C:\\Program Files\\Guild Wars 2\\Gw2-64.exe");
 
-            // set the listener that should receive events
-            client.setEventListener(new ExampleListener());
+        // set the listener that should receive events
+        client.setEventListener(new ExampleListener());
 
-            // start listening
-            client.start();
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
+        // start listening
+        client.start();
     }
 }
 ```
