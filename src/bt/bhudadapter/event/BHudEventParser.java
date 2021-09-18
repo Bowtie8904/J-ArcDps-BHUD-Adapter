@@ -234,7 +234,7 @@ public class BHudEventParser
 
         for (int i = offset; i < offset + length; i++)
         {
-            chars[i] = (char)data[i];
+            chars[i - offset] = (char)data[i];
         }
 
         return new String(chars);

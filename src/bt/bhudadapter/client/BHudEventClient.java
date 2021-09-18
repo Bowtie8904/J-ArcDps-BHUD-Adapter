@@ -27,9 +27,8 @@ public class BHudEventClient implements ByteProcessor, RawDataReader, Killable
      * To actually setup a socket and start reading data the {@link #start()} method needs to be called.
      *
      * @param gw2Path The absolute path to the Guild Wars 2 exe.
-     * @throws IOException
      */
-    public BHudEventClient(String gw2Path) throws IOException
+    public BHudEventClient(String gw2Path)
     {
         this.client = new RawClient("127.0.0.1", findPort(gw2Path));
         // messages are not processed on separate threads
