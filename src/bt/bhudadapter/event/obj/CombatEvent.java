@@ -4,6 +4,9 @@ import bt.bhudadapter.event.types.*;
 
 import java.util.Objects;
 
+/**
+ * See https://www.deltaconnected.com/arcdps/evtc/README.txt for some information on fields.
+ */
 public class CombatEvent
 {
     private long id;

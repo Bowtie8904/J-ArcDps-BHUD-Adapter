@@ -3,36 +3,53 @@ package bt.bhudadapter.client;
 import bt.bhudadapter.event.BHudEventListener;
 import bt.bhudadapter.event.BHudEventParser;
 import bt.remote.socket.RawClient;
+import bt.remote.socket.data.ByteProcessor;
+import bt.remote.socket.data.RawDataReader;
+import bt.types.Killable;
+import bt.utils.Null;
 
+import java.io.DataInputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 
-public class BHudEventClient extends RawClient
+public class BHudEventClient implements ByteProcessor, RawDataReader, Killable
 {
+    protected RawClient client;
     protected BHudEventParser eventParser;
+    protected BHudEventListener listener;
 
     /**
-     * Creates a new instance and attemots to set up a client.
+     * Creates a new instance.
      *
      * This constructor will try to find the Guild Wars 2 process with the given path to determine the required port.
      *
-     * To actually start reading data the {@link #start()} method needs to be called.
+     * To actually setup a socket and start reading data the {@link #start()} method needs to be called.
      *
      * @param gw2Path The absolute path to the Guild Wars 2 exe.
      * @throws IOException
      */
     public BHudEventClient(String gw2Path) throws IOException
     {
-        super("127.0.0.1", findPort(gw2Path));
-
+        this.client = new RawClient("127.0.0.1", findPort(gw2Path));
         // messages are not processed on separate threads
-        setSingleThreadProcessing(true);
+        this.client.setSingleThreadProcessing(true);
 
-        // reconnect with infinite tries
-        autoReconnect(-1);
+        // reconnect with 3 tries
+        this.client.autoReconnect(3);
+
+        this.client.setByteProcessor(this);
+        this.client.setDataReader(this);
 
         setupDefaultEventParser();
+    }
+
+    /**
+     * Starts the connection to the B-Hud socket.
+     */
+    public void start()
+    {
+        this.client.start();
     }
 
     /**
@@ -42,51 +59,42 @@ public class BHudEventClient extends RawClient
      */
     public void setEventListener(BHudEventListener listener)
     {
-        if (this.eventParser != null)
-        {
-            this.eventParser.setEventListener(listener);
-        }
+        this.listener = listener;
     }
 
+    /**
+     * Sets up the parser for incoming byte data.
+     *
+     * Override if you want to use your own {@link BHudEventParser}.
+     */
     protected void setupDefaultEventParser()
     {
         this.eventParser = new BHudEventParser();
-        setByteProcessor(this.eventParser);
     }
 
     @Override
-    protected void setupDefaultDataReader()
+    public byte[] read(DataInputStream in) throws IOException
     {
-        // defining how data is read from the stream and what part of the data is given to the processing
-        setDataReader(in -> {
-            byte[] data = new byte[8];
-            int bytes = 0;
-            int messageLength = 0;
+        byte[] data = new byte[8];
+        int bytes = 0;
+        int messageLength = 0;
 
-            try
-            {
-                // read first 8 bytes as message header
-                bytes = in.read(data, 0, 8);
-                var buffer = ByteBuffer.wrap(data);
-                buffer.order(ByteOrder.LITTLE_ENDIAN);
+        // read first 8 bytes as message header
+        bytes = in.read(data, 0, 8);
+        var buffer = ByteBuffer.wrap(data);
+        buffer.order(ByteOrder.LITTLE_ENDIAN);
 
-                // header contains length of the rest of the message
-                messageLength = buffer.getInt();
-                data = new byte[messageLength];
+        // header contains length of the rest of the message
+        messageLength = buffer.getInt();
+        data = new byte[messageLength];
 
-                // read remaining bytes of message
-                bytes = in.read(data, 0, messageLength);
-            }
-            catch (IOException e)
-            {
-                e.printStackTrace();
-            }
+        // read remaining bytes of message
+        bytes = in.read(data, 0, messageLength);
 
-            return data;
-        });
+        return data;
     }
 
-    protected static int findPort(String gw2Path)
+    protected int findPort(String gw2Path)
     {
         var process = ProcessHandle.allProcesses()
                                    .filter(p ->p.info().command().isPresent())
@@ -103,5 +111,17 @@ public class BHudEventClient extends RawClient
         {
             throw new IllegalArgumentException("Could not find process of Guild Wars 2. Please make sure '" + gw2Path + "' is the correct path.");
         }
+    }
+
+    @Override
+    public byte[] process(byte[] incoming)
+    {
+        return this.eventParser.parse(incoming, this.listener);
+    }
+
+    @Override
+    public void kill()
+    {
+        Null.checkKill(this.client);
     }
 }

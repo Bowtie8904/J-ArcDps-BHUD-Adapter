@@ -2,11 +2,11 @@ package bt.bhudadapter.event.types;
 
 public enum IFF
 {
-    // green vs green, red vs red
+    /** green vs green, red vs red */
     FRIEND,
-    // green vs red
+    /** green vs red */
     FOE,
-    // something very wrong happened
+    /** something very wrong happened */
     UNKNOWN;
 
     public static IFF forValue(int value)

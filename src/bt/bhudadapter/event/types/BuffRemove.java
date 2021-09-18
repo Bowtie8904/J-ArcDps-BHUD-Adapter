@@ -2,13 +2,13 @@ package bt.bhudadapter.event.types;
 
 public enum BuffRemove
 {
-    // not used - not this kind of event
+    /** not used - not this kind of event */
     NONE,
-    // all stacks removed
+    /** all stacks removed */
     ALL,
-    // single stack removed. disabled on server trigger, will happen for each stack on cleanse
+    /** single stack removed. disabled on server trigger, will happen for each stack on cleanse */
     SINGLE,
-    // autoremoved by ooc or allstack (ignore for strip/cleanse calc, use for in/out volume)
+    /** autoremoved by ooc or allstack (ignore for strip/cleanse calc, use for in/out volume) */
     MANUAL;
 
     public static BuffRemove forValue(int value)

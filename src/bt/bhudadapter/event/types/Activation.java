@@ -2,18 +2,20 @@ package bt.bhudadapter.event.types;
 
 public enum Activation
 {
-    // not used - not this kind of event
+    /** not used - not this kind of event */
     NONE,
-    // activation without quickness
+    /** activation without quickness */
     NORMAL,
-    // activation with quickness
+    /** activation with quickness */
     QUICKNESS,
-    // cancel with reaching channel time
+    /** cancel with reaching channel time */
     CANCEL_FIRE,
-    // cancel without reaching channel time
+    /** cancel without reaching channel time */
     CANCEL_CANCEL,
-    // animation completed fully
-    RESET;
+    /** animation completed fully */
+    RESET,
+    /** unknown or invalid, ignore */
+    UNKNOWN;
 
     public static Activation forValue(int value)
     {
@@ -25,6 +27,6 @@ public enum Activation
             }
         }
 
-        return NONE;
+        return UNKNOWN;
     }
 }
