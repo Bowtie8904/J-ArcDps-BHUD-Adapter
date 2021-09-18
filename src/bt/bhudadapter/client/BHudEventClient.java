@@ -5,6 +5,7 @@ import bt.bhudadapter.event.BHudEventParser;
 import bt.remote.socket.RawClient;
 import bt.remote.socket.data.ByteProcessor;
 import bt.remote.socket.data.RawDataReader;
+import bt.runtime.evnt.Dispatcher;
 import bt.types.Killable;
 import bt.utils.Null;
 
@@ -49,6 +50,16 @@ public class BHudEventClient implements ByteProcessor, RawDataReader, Killable
     public void start()
     {
         this.client.start();
+    }
+
+    /**
+     * @see {@link bt.remote.socket.Client#getEventDispatcher()}
+     *
+     * @return
+     */
+    public Dispatcher getEventDispatcher()
+    {
+        return this.client.getEventDispatcher();
     }
 
     /**

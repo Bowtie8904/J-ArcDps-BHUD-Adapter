@@ -49,7 +49,7 @@
         <dependency>
             <groupId>com.github.Bowtie8904</groupId>
             <artifactId>BtRemote</artifactId>
-            <version>26e6320</version>
+            <version>dadf9d2</version>
         </dependency>
     </dependencies>
 

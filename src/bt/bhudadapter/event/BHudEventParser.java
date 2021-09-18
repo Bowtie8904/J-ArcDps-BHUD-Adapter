@@ -223,7 +223,7 @@ public class BHudEventParser
 
     protected ByteBuffer getByteBuffer(byte[] data, int offset, int length)
     {
-        var buffer = ByteBuffer.wrap(data, offset, offset + length);
+        var buffer = ByteBuffer.wrap(data, offset, length);
         buffer.order(ByteOrder.LITTLE_ENDIAN);
         return buffer;
     }
