@@ -53,9 +53,27 @@ public class BHudEventClient implements ByteProcessor, RawDataReader, Killable
     }
 
     /**
-     * @see {@link bt.remote.socket.Client#getEventDispatcher()}
+     * Gets the {@link Dispatcher} used to distribute events of the client.
      *
-     * @return
+     * These events are network connection related and have nothing to do with arcdps events.
+     *
+     * <p>
+     * Possible events:
+     * <ul>
+     * <li>{@link bt.remote.socket.evnt.PingUpdate} if the client has a new value for ping. Might not be supported by all clients</li>
+     * <li>{@link bt.remote.socket.evnt.KeepAliveTimeout} if a sent keep alive message was not answered in time. Might not be supported by all clients</li>
+     * <li>{@link bt.remote.socket.evnt.ConnectionFailed} initial connection to the host failed</li>
+     * <li>{@link bt.remote.socket.evnt.ConnectionLost} previously established connection was lost</li>
+     * <li>{@link bt.remote.socket.evnt.ReconnectStarted} reconnect efforts were started</li>
+     * <li>{@link bt.remote.socket.evnt.ReconnectFailed} reconnect efforts failed</li>
+     * <li>{@link bt.remote.socket.evnt.ReconnectSuccessfull} reconnect efforts were successful</li>
+     * <li>{@link bt.remote.socket.evnt.ReconnectAttempt} a specific reconnect attempt was started</li>
+     * <li>{@link bt.remote.socket.evnt.ReconnectAttemptFailed} a specific reconnect attempt failed</li>
+     * <li>{@link bt.remote.socket.evnt.ClientKilled} the client was destroyed through a call to {@link #kill()}</li>
+     * <li>{@link bt.remote.socket.evnt.UnspecifiedException} less specific exception was thrown somewhere in this class</li>
+     * </ul>
+     * </p>
+     *
      */
     public Dispatcher getEventDispatcher()
     {
