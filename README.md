@@ -2,7 +2,8 @@
  This is a very simple library that makes it easier to receive and process events sent from [arcdps-bhud](https://github.com/blish-hud/arcdps-bhud) in Java.
 
 ## Requirements
-This library requires Java 11+
+Java 11+
+implemented and tested against arcdps-bhud v0.3.1
 
 ## Maven
 ```xml
