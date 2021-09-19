@@ -60,8 +60,6 @@ public class BHudEventClient implements ByteProcessor, RawDataReader, Killable
      * <p>
      * Possible events:
      * <ul>
-     * <li>{@link bt.remote.socket.evnt.PingUpdate} if the client has a new value for ping. Might not be supported by all clients</li>
-     * <li>{@link bt.remote.socket.evnt.KeepAliveTimeout} if a sent keep alive message was not answered in time. Might not be supported by all clients</li>
      * <li>{@link bt.remote.socket.evnt.ConnectionSuccessfull} initial connection to the host succeeded</li>
      * <li>{@link bt.remote.socket.evnt.ConnectionFailed} initial connection to the host failed</li>
      * <li>{@link bt.remote.socket.evnt.ConnectionLost} previously established connection was lost</li>
