@@ -2,7 +2,9 @@
  This is a very simple library that makes it easier to receive and process events sent from [arcdps-bhud](https://github.com/blish-hud/arcdps-bhud) in Java.
 
 ## Requirements
-This library requires Java 11+
+Java 11+
+
+implemented and tested against arcdps-bhud v0.3.1
 
 ## Maven
 ```xml
@@ -17,7 +19,7 @@ This library requires Java 11+
     <dependency>
         <groupId>com.github.Bowtie8904</groupId>
         <artifactId>J-ArcDps-BHUD-Adapter</artifactId>
-        <version>1.0</version>
+        <version>1.1</version>
     </dependency>
 </dependencies>
 ```
@@ -56,21 +58,14 @@ public class Example
 {
     public static void main(String[] args)
     {
-        try
-        {
-            // create a new client and tell it where the Guild Wars 2 application is
-            var client = new BHudEventClient("C:\\Program Files\\Guild Wars 2\\Gw2-64.exe");
+        // create a new client and tell it where the Guild Wars 2 application is
+        var client = new BHudEventClient("C:\\Program Files\\Guild Wars 2\\Gw2-64.exe");
 
-            // set the listener that should receive events
-            client.setEventListener(new ExampleListener());
+        // set the listener that should receive events
+        client.setEventListener(new ExampleListener());
 
-            // start listening
-            client.start();
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
+        // start listening
+        client.start();
     }
 }
 ```
