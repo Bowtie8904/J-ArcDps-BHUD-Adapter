@@ -10,6 +10,7 @@ import bt.types.Killable;
 import bt.utils.Null;
 
 import java.io.DataInputStream;
+import java.io.EOFException;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -108,6 +109,12 @@ public class BHudEventClient implements ByteProcessor, RawDataReader, Killable
 
         // read first 8 bytes as message header
         bytes = in.read(data, 0, 8);
+
+        if (bytes == -1)
+        {
+            throw new EOFException("Reached end of stream");
+        }
+
         var buffer = ByteBuffer.wrap(data);
         buffer.order(ByteOrder.LITTLE_ENDIAN);
 
