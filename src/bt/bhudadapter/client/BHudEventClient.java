@@ -61,16 +61,16 @@ public class BHudEventClient implements ByteProcessor, RawDataReader, Killable
      * <p>
      * Possible events:
      * <ul>
-     * <li>{@link bt.remote.socket.evnt.ConnectionSuccessfull} initial connection to the host succeeded</li>
-     * <li>{@link bt.remote.socket.evnt.ConnectionFailed} initial connection to the host failed</li>
-     * <li>{@link bt.remote.socket.evnt.ConnectionLost} previously established connection was lost</li>
-     * <li>{@link bt.remote.socket.evnt.ReconnectStarted} reconnect efforts were started</li>
-     * <li>{@link bt.remote.socket.evnt.ReconnectFailed} reconnect efforts failed</li>
-     * <li>{@link bt.remote.socket.evnt.ReconnectSuccessfull} reconnect efforts were successful</li>
-     * <li>{@link bt.remote.socket.evnt.ReconnectAttempt} a specific reconnect attempt was started</li>
-     * <li>{@link bt.remote.socket.evnt.ReconnectAttemptFailed} a specific reconnect attempt failed</li>
-     * <li>{@link bt.remote.socket.evnt.ClientKilled} the client was destroyed through a call to {@link #kill()}</li>
-     * <li>{@link bt.remote.socket.evnt.UnspecifiedException} less specific exception was thrown somewhere in this class</li>
+     * <li>{@link bt.remote.socket.evnt.client.ClientConnectionSuccessfull} initial connection to the host succeeded</li>
+     * <li>{@link bt.remote.socket.evnt.client.ClientConnectionFailed} initial connection to the host failed</li>
+     * <li>{@link bt.remote.socket.evnt.client.ClientConnectionLost} previously established connection was lost</li>
+     * <li>{@link bt.remote.socket.evnt.client.ClientReconnectStarted} reconnect efforts were started</li>
+     * <li>{@link bt.remote.socket.evnt.client.ClientReconnectFailed} reconnect efforts failed</li>
+     * <li>{@link bt.remote.socket.evnt.client.ClientReconnectSuccessfull} reconnect efforts were successful</li>
+     * <li>{@link bt.remote.socket.evnt.client.ClientReconnectAttempt} a specific reconnect attempt was started</li>
+     * <li>{@link bt.remote.socket.evnt.client.ClientReconnectAttemptFailed} a specific reconnect attempt failed</li>
+     * <li>{@link bt.remote.socket.evnt.client.ClientKilled} the client was destroyed through a call to {@link #kill()}</li>
+     * <li>{@link bt.remote.socket.evnt.client.UnspecifiedClientException} less specific exception was thrown somewhere in this class</li>
      * </ul>
      * </p>
      *
