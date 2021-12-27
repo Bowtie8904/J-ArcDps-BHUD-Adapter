@@ -42,6 +42,8 @@ public class BHudEventClient implements ByteProcessor, RawDataReader, Killable
         this.client.setByteProcessor(this);
         this.client.setDataReader(this);
 
+        this.client.configureDefaultEventListeners();
+
         setupDefaultEventParser();
     }
 

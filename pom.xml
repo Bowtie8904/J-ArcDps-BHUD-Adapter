@@ -20,18 +20,6 @@
                     <verbose>true</verbose>
                 </configuration>
             </plugin>
-            <plugin>  <!-- Create sources.jar -->
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>attach-sources</id>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
     </build>
     <repositories>
@@ -43,13 +31,8 @@
     <dependencies>
         <dependency>
             <groupId>com.github.Bowtie8904</groupId>
-            <artifactId>BtCommons</artifactId>
-            <version>11ead9cbc6</version>
-        </dependency>
-        <dependency>
-            <groupId>com.github.Bowtie8904</groupId>
             <artifactId>BtRemote</artifactId>
-            <version>110d4292</version>
+            <version>a6643a06</version>
         </dependency>
     </dependencies>
 
